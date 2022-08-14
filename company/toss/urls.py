@@ -1,5 +1,5 @@
 class Toss():
-    def aa(self):
+    def getNewDate(self):
         #scraping
         a = "toss"
         return a
