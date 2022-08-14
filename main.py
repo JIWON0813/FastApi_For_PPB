@@ -1,6 +1,7 @@
 import fastapi
 import importlib
 from datetime import date
+from common import companyEnum
 
 app = fastapi.FastAPI()
 
@@ -11,10 +12,11 @@ def home():
 
 @app.get('/datas')
 def datas():   
-    mod = importlib.import_module('company.'+'toss'+ '.urls')
-    dic = {}
+	dic = {}
+ 
+	for val in companyEnum.Company:
+		mod = importlib.import_module('company.'+val.value.lower()+ '.urls')
+		result = getattr(mod, val.name)()
+		dic[val.name] = result.getNewDate()
     
-    result = getattr(mod, 'Toss')()
-    dic['Toss'] = result.aa()
-    
-    return dic
+	return dic
