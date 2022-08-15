@@ -14,9 +14,9 @@ def home():
 def datas():   
 	dic = {}
  
-	for val in companyEnum.Company:
-		mod = importlib.import_module('company.'+val.value.lower()+ '.urls')
-		result = getattr(mod, val.name)()
-		dic[val.name] = result.getNewDate()
+	for company in companyEnum.Company:
+		mod = importlib.import_module('company.'+company.value.lower()+ '.urls')
+		result = getattr(mod, company.name)()
+		dic[company.name] = result.getNewDate()
     
 	return dic
