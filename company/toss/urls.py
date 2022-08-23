@@ -3,8 +3,8 @@ import datetime
 from bs4 import BeautifulSoup
 
 
-class Toss():
-    def getNewDate(self):
+class Toss:
+    def get_new_date(self):
         #scraping
         url = "https://toss.tech/"
         html = requests.get(url).text

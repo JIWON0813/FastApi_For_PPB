@@ -1,7 +1,7 @@
 import fastapi
 import importlib
 from datetime import date
-from common import companyEnum
+from common import company_enum
 
 app = fastapi.FastAPI()
 
@@ -10,13 +10,13 @@ def home():
 	return date.today()
 
 
-@app.get('/datas')
+@app.get('/tech_blog/datas')
 def datas():   
 	dic = {}
  
-	for company in companyEnum.Company:
+	for company in company_enum.Company:
 		mod = importlib.import_module('company.'+company.value.lower()+ '.urls')
 		result = getattr(mod, company.name)()
-		dic[company.name] = result.getNewDate()
+		dic[company.name] = result.get_new_date()
     
 	return dic
